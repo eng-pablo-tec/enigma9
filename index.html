@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadeado Lógico</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f3f3;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .lock {
+            font-size: 50px;
+            color: red;
+        }
+        .unlocked {
+            color: green;
+        }
+        input {
+            padding: 10px;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+        #message {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="lockIcon" class="lock">🔒</div>
+        <h2>Digite o Código</h2>
+        <input type="password" id="codeInput" placeholder="Digite o código">
+        <br>
+        <button onclick="checkCode()">Desbloquear</button>
+        <p id="message">Use a cifra de César chave 5 para decifrar esse texto.<br>
+        5-vzjgwj t tat;<br>
+        9-fgwf f ljqfijnwf;<br>
+        0-kjwajw rjcjw j ijutnx xjwanw, utw f rjxf<br>
+        5-ujlfw nslwjinjsyjx<br>
+        5-htqthfw tx nslwjinjsyjx sf ufsjqf<br>
+    </div>
+
+    <script>
+        function checkCode() {
+            const correctCode = "235711";
+            const userCode = document.getElementById("codeInput").value;
+            const lockIcon = document.getElementById("lockIcon");
+            const message = document.getElementById("message");
+            
+            if (userCode === correctCode) {
+                lockIcon.textContent = "🔓";
+                lockIcon.classList.add("unlocked");
+                setTimeout(() => {
+                    message.style.display = "block";
+                }, 500);
+            } else {
+                lockIcon.textContent = "🔒";
+                lockIcon.classList.remove("unlocked");
+                message.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
