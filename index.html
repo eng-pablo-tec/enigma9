@@ -1,92 +1,126 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadeado Lógico</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f3f3f3;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .lock {
-            font-size: 50px;
-            color: red;
-        }
-        .unlocked {
-            color: green;
-        }
-        input {
-            padding: 10px;
-            margin-top: 10px;
-            text-align: center;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px;
-            margin-top: 10px;
-            background-color: blue;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: darkblue;
-        }
-        #message {
-            display: none;
-            margin-top: 20px;
-            font-size: 16px;
-            color: black;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enigma de Tradução 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f4f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 700px;
+      text-align: left;
+    }
+    h2 {
+      text-align: center;
+    }
+    .lock {
+      font-size: 50px;
+      text-align: center;
+      color: red;
+    }
+    .unlocked {
+      color: green;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 8px 0;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 12px;
+      font-size: 16px;
+      text-align: center;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #message {
+      display: none;
+      margin-top: 16px;
+      font-size: 16px;
+      color: #333;
+      text-align: center;
+    }
+    #message a {
+      display: block;
+      margin-top: 10px;
+      color: blue;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div id="lockIcon" class="lock">🔒</div>
-        <h2>Digite o Código</h2>
-        <input type="password" id="codeInput" placeholder="Digite o código">
-        <br>
-        <button onclick="checkCode()">Desbloquear</button>
-        <p id="message">Use a cifra de César chave 5 para decifrar esse texto.<br>
-        5-vzjgwj t tat;<br>
-        9-fgwf f ljqfijnwf;<br>
-        0-kjwajw rjcjw j ijutnx xjwanw, utw f rjxf<br>
-        5-ujlfw nslwjinjsyjx<br>
-        5-htqthfw tx nslwjinjsyjx sf ufsjqf<br>
-    </div>
+  <div class="container">
+    <div id="lockIcon" class="lock">🔒</div>
+    <h2>Enigma de Tradução</h2>
+    <p>Traduza corretamente esta frase:</p>
+    <p><strong>"She reads books because she loves to learn."</strong></p>
 
-    <script>
-        function checkCode() {
-            const correctCode = "235711";
-            const userCode = document.getElementById("codeInput").value;
-            const lockIcon = document.getElementById("lockIcon");
-            const message = document.getElementById("message");
-            
-            if (userCode === correctCode) {
-                lockIcon.textContent = "🔓";
-                lockIcon.classList.add("unlocked");
-                setTimeout(() => {
-                    message.style.display = "block";
-                }, 500);
-            } else {
-                lockIcon.textContent = "🔒";
-                lockIcon.classList.remove("unlocked");
-                message.style.display = "none";
-            }
-        }
-    </script>
+    <ul>
+      <li>A) Ela lê livros porque ama aprender.</li>
+      <li>B) Ela está lendo livros porque quer ler.</li>
+      <li>C) Ela escreve livros porque gosta de ensinar.</li>
+      <li>D) Ela gosta de livros e de ensinar.</li>
+      <li>E) Ela lê livros porque quer estudar.</li>
+      <li>F) Ela ama livros por causa da leitura.</li>
+      <li>G) Ela leu livros porque ela aprendeu a amar.</li>
+      <li>H) Ela lê livros para ensinar os outros.</li>
+      <li>I) Ela ama ensinar por isso lê livros.</li>
+      <li>J) Ela lê livros por causa da escola.</li>
+    </ul>
+
+    <p>Digite a letra da alternativa correta:</p>
+    <input type="text" id="inputAlt" placeholder="Digite A, B, C..." />
+    <button onclick="checkAnswer()">Verificar Resposta</button>
+
+    <div id="message">
+      🎉 Parabéns! Você acertou!<br/>
+      <a href="https://eng-pablo-tec.github.io/enigma9/" target="_blank">Ir para o próximo enigma</a>
+    </div>
+  </div>
+
+  <script>
+    function checkAnswer() {
+      const resposta = document.getElementById('inputAlt').value.trim().toUpperCase();
+      const cadeado = document.getElementById('lockIcon');
+      const msg = document.getElementById('message');
+      if (resposta === 'A') {
+        cadeado.textContent = '🔓';
+        cadeado.classList.add('unlocked');
+        msg.style.display = 'block';
+      } else {
+        cadeado.textContent = '🔒';
+        cadeado.classList.remove('unlocked');
+        msg.style.display = 'none';
+      }
+    }
+  </script>
 </body>
 </html>
